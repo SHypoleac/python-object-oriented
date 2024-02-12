@@ -3,13 +3,16 @@
 def checkisinstance(self, other):
     if not isinstance(other, Book):
         raise TypeError("You cannot compare two objects of different types")
-
+        
 class Book:
+    books=[]
     def __init__(self, title, author, price):
         super().__init__()
         self.title = title
         self.author = author
         self.price = price
+        books.append(self)
+        
     # TODO: the __eq__ method checks for equality between two objects
     def __eq__(self, other):
         checkisinstance(self, other)
@@ -27,6 +30,10 @@ class Book:
     def __str__(self):
         return (f"{self.title}")
 
+    def showbooks():
+        for book in books:
+            print book
+
 
 b1 = Book("War and Peace", "Leo Tolstoy", 39.95)
 b2 = Book("The Catcher in the Rye", "JD Salinger", 29.95)
@@ -42,11 +49,8 @@ print("Is b1 price greater than b2 :",b1>b2)
 print("So its not lower? :",b1<b2)
 # TODO: Now we can sort them too
 print("-------------------\nBOOKS:")
-books=[b1,b2,b3,b4]
-for book in books:
-    print(book)
-books.sort()
+Book.showbooks()
+Book.books.sort()
 print("-------------------\nSORTED:")
-for book in books:
-    print(book)
+Book.showbooks()
 
